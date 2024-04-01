@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from catalog.models import Cook, Dish, DishType
-from catalog.forms import (
+from restaurant_kitchen.models import Cook, Dish, DishType
+from restaurant_kitchen.forms import (
     CookCreationForm,
     CookUpdateForm,
     DishTypeCreationForm,
@@ -34,13 +34,13 @@ def index(request):
         "num_visits": num_visits + 1,
     }
 
-    return render(request, "kitchen/index.html", context=context)
+    return render(request, "restaurant_kitchen/index.html", context=context)
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "kitchen/dish_type_list.html"
+    template_name = "restaurant_kitchen/dish_type_list.html"
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):

@@ -1,5 +1,5 @@
 from django import forms
-from catalog.models import Cook, DishType, Dish
+from restaurant_kitchen.models import Cook, DishType, Dish
 
 
 class DishForm(forms.ModelForm):
