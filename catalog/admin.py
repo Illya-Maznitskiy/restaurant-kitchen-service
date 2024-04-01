@@ -27,7 +27,7 @@ class CookAdmin(UserAdmin):
 
 
 @admin.register(Dish)
-class CookAdmin(admin.ModelAdmin):
+class DishAdmin(admin.ModelAdmin):
     search_fields = ("model",)
     list_filter = ("dish_type",)
 
