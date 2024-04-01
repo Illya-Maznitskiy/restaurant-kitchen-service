@@ -15,4 +15,4 @@ class Dish(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
-    cooks = models.ManyToManyField(Cooks)
+    cooks = models.ManyToManyField(Cook)
