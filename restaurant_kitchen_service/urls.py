@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from restaurant_kitchen.views import (
     index,
@@ -38,6 +39,7 @@ from restaurant_kitchen.views import (
 
 urlpatterns = [
     path("", index, name="index"),
+    path("admin/", admin.site.urls),
     path("accounts/login/", auth_views.LoginView.as_view(), name="login"),
     path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("cooks/", CookListView.as_view(), name="cook-list"),
