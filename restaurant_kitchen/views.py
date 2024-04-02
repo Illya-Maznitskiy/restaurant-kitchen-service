@@ -64,18 +64,18 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     form_class = DishTypeCreationForm
-    success_url = reverse_lazy("kitchen:dish-type-list")
+    success_url = reverse_lazy("restaurant_kitchen:dish-type-list")
 
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
     form_class = DishTypeUpdateForm
-    success_url = reverse_lazy("kitchen:dish-type-list")
+    success_url = reverse_lazy("restaurant_kitchen:dish-type-list")
 
 
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
-    success_url = reverse_lazy("kitchen:dish-type-list")
+    success_url = reverse_lazy("restaurant_kitchen:dish-type-list")
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
@@ -107,18 +107,18 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
     form_class = DishCreationForm
-    success_url = reverse_lazy("kitchen:dish-list")
+    success_url = reverse_lazy("restaurant_kitchen:dish-list")
 
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     form_class = DishUpdateForm
-    success_url = reverse_lazy("kitchen:dish-list")
+    success_url = reverse_lazy("restaurant_kitchen:dish-list")
 
 
 class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
-    success_url = reverse_lazy("kitchen:dish-list")
+    success_url = reverse_lazy("restaurant_kitchen:dish-list")
 
 
 class CookListView(LoginRequiredMixin, generic.ListView):
@@ -155,12 +155,12 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     form_class = CookUpdateForm
-    success_url = reverse_lazy("kitchen:cook-list")
+    success_url = reverse_lazy("restaurant_kitchen:cook-list")
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
-    success_url = reverse_lazy("kitchen:cook-list")
+    success_url = reverse_lazy("restaurant_kitchen:cook-list")
 
 
 @login_required
@@ -172,4 +172,4 @@ def toggle_assign_to_dish(request, pk):
         cook.dishes.remove(pk)
     else:
         cook.dishes.add(pk)
-    return HttpResponseRedirect(reverse_lazy("kitchen:dish-detail", args=[pk]))
+    return HttpResponseRedirect(reverse_lazy("restaurant_kitchen:dish-detail", args=[pk]))

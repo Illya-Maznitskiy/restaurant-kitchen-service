@@ -39,21 +39,21 @@ urlpatterns = [
         CookDeleteView.as_view(),
         name="cook-delete"
     ),
-    path("dishtypes/", DishTypeListView.as_view(), name="dishtype-list"),
+    path("dishtypes/", DishTypeListView.as_view(), name="dish-type-list"),
     path(
         "dishtypes/create/",
         DishTypeCreateView.as_view(),
-        name="dishtype-create"
+        name="dish-type-create"
     ),
     path(
         "dishtypes/<int:pk>/update/",
         DishTypeUpdateView.as_view(),
-        name="dishtype-update"
+        name="dish-type-update"
     ),
     path(
         "dishtypes/<int:pk>/delete/",
         DishTypeDeleteView.as_view(),
-        name="dishtype-delete"
+        name="dish-type-delete"
     ),
     path("dishes/", DishListView.as_view(), name="dish-list"),
     path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
