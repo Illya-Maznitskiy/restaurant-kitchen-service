@@ -3,7 +3,7 @@
 
 {% block content %}
   <h1>
-    Types of dishes List
+    Types of Dishes List
     <a href="{% url 'restaurant_kitchen:dish-type-create' %}" class="btn btn-primary link-to-page">
       Create
     </a>
@@ -26,31 +26,62 @@
 
       {% for type in dish_type_list %}
         <tr>
+          <td>{{ type.id }}</td>
+          <td>{{ type.name }}</td>
+          <td>{{ type.country }}</td>
           <td>
-              {{ type.id }}
+            <a href="{% url 'restaurant_kitchen:dish-type-update' pk=type.id %}">
+              Update
+            </a>
           </td>
           <td>
-              {{ type.name }}
+            <a style="color: red" href="{% url 'restaurant_kitchen:dish-type-delete' pk=type.id %}">
+              Delete
+            </a>
           </td>
-          <td>
-              {{ type.country }}
-          </td>
-          <td>
-              <a href="{% url 'restaurant_kitchen:dish-type-update' pk=type.id %}">
-                Update
-              </a>
-            </td>
-            <td>
-              <a style="color: red"
-                href="{% url 'restaurant_kitchen:dish-type-delete' pk=type.id %}">
-                Delete
-              </a>
-            </td>
         </tr>
       {% endfor %}
     </table>
 
+    {% if is_paginated %}
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1" aria-label="First">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&lsaquo;</span>
+              </a>
+            </li>
+          {% endif %}
+          {% for page_num in page_obj.paginator.page_range %}
+            {% if page_obj.number == page_num %}
+              <li class="page-item active"><span class="page-link">{{ page_num }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&rsaquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+
   {% else %}
-      <p>There are no type of dishes in the service.</p>
+    <p>There are no types of dishes in the service.</p>
   {% endif %}
 {% endblock %}
