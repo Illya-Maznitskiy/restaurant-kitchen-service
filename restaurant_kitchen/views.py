@@ -40,7 +40,7 @@ def index(request):
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "restaurant_kitchen/dish_type_list.html"
+    template_name = "restaurant_kitchen/dishtype_list.html"
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -172,4 +172,6 @@ def toggle_assign_to_dish(request, pk):
         cook.dishes.remove(pk)
     else:
         cook.dishes.add(pk)
-    return HttpResponseRedirect(reverse_lazy("restaurant_kitchen:dish-detail", args=[pk]))
+    return HttpResponseRedirect(
+        reverse_lazy("restaurant_kitchen:dish-detail", args=[pk])
+    )
