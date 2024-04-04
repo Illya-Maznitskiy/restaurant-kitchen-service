@@ -43,7 +43,7 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "dish_type_list"
     template_name = "restaurant_kitchen/dishtype_list.html"
     paginate_by = 5
-    paginator = Paginator(Cook.objects.all(), 5)
+    paginator = Paginator(Cook.objects.all().order_by('id'), 5)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -83,7 +83,7 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     paginate_by = 5
-    paginator = Paginator(Cook.objects.all(), 5)
+    paginator = Paginator(Cook.objects.all().order_by('id'), 5)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -127,7 +127,7 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     paginate_by = 5
-    paginator = Paginator(Cook.objects.all(), 5)
+    paginator = Paginator(Cook.objects.all().order_by('id'), 5)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -169,13 +169,12 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 @login_required
 def toggle_assign_to_dish(request, pk):
+    dish = Dish.objects.get(id=pk)
     cook = Cook.objects.get(id=request.user.id)
-    if (
-        Dish.objects.get(id=pk) in cook.dishes.all()
-    ):  # probably could check if dish exists
-        cook.dishes.remove(pk)
+    if dish.cooks.filter(id=cook.id).exists():
+        dish.cooks.remove(cook)
     else:
-        cook.dishes.add(pk)
+        dish.cooks.add(cook)
     return HttpResponseRedirect(
         reverse_lazy("restaurant_kitchen:dish-detail", args=[pk])
     )

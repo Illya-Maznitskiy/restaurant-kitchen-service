@@ -19,7 +19,6 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Country</th>
         <th>Update</th>
         <th>Delete</th>
       </tr>
@@ -28,7 +27,6 @@
         <tr>
           <td>{{ type.id }}</td>
           <td>{{ type.name }}</td>
-          <td>{{ type.country }}</td>
           <td>
             <a href="{% url 'restaurant_kitchen:dish-type-update' pk=type.id %}">
               Update
