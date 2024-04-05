@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ object.name }}</h1>
+  <p>Dish Type: {{ object.name }}</p>
+
+  <h2>Cooks</h2>
+  <ul>
+    {% for dish in dishes %}
+      <li>{{ dish.name }}</li>
+      <ul>
+        {% for cook in dish.cooks.all %}
+          <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </ul>
+
+  <hr>
+
+  <a href="{% url 'restaurant_kitchen:dish-type-update' pk=object.pk %}" class="btn btn-secondary">Update Dish Type</a>
+  <a href="{% url 'restaurant_kitchen:dish-type-delete' pk=object.pk %}" class="btn btn-danger">Delete Dish Type</a>
+  <a href="{% url 'restaurant_kitchen:dish-type-list' %}" class="btn btn-primary">Back to Dish Types</a>
+{% endblock %}
