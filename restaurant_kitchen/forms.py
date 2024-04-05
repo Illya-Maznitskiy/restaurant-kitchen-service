@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
 from restaurant_kitchen.models import Cook, DishType, Dish
 
 
@@ -11,13 +13,23 @@ class DishForm(forms.ModelForm):
 class CookCreationForm(forms.ModelForm):
     class Meta:
         model = Cook
-        fields = "__all__"
+        fields = UserCreationForm.Meta.fields + (
+            "first_name",
+            "last_name",
+            "email",
+            "years_of_experience",
+        )
 
 
 class CookUpdateForm(forms.ModelForm):
     class Meta:
         model = Cook
-        fields = ["years_of_experience"]
+        fields = (
+            "first_name",
+            "last_name",
+            "email",
+            "years_of_experience",
+        )
 
     def clean_years_of_experience(self):
         years_of_experience = self.cleaned_data.get("years_of_experience")
