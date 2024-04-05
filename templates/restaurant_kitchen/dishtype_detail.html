@@ -4,7 +4,7 @@
   <h1>{{ object.name }}</h1>
   <p>Dish Type: {{ object.name }}</p>
 
-  <h2>Cooks</h2>
+  <h2>Dishes</h2>
   <ul>
     {% for dish in dishes %}
       <li>{{ dish.name }}</li>
@@ -20,5 +20,4 @@
 
   <a href="{% url 'restaurant_kitchen:dish-type-update' pk=object.pk %}" class="btn btn-secondary">Update Dish Type</a>
   <a href="{% url 'restaurant_kitchen:dish-type-delete' pk=object.pk %}" class="btn btn-danger">Delete Dish Type</a>
-  <a href="{% url 'restaurant_kitchen:dish-type-list' %}" class="btn btn-primary">Back to Dish Types</a>
 {% endblock %}
