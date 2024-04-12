@@ -1,3 +1,4 @@
+{% load i18n %}
 <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
   {% csrf_token %}
   <button type="submit">{% translate "Log out" %}</button>

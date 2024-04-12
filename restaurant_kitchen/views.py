@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
 
 from restaurant_kitchen.models import Cook, Dish, DishType
 from restaurant_kitchen.forms import (
@@ -32,6 +33,7 @@ def index(request):
         "num_dishes": num_dishes,
         "num_dish_types": num_dish_types,
         "num_visits": num_visits + 1,
+        "ASSETS_ROOT": settings.ASSETS_ROOT
     }
 
     return render(request, "restaurant_kitchen/index.html", context=context)
