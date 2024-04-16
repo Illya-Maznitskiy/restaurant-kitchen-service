@@ -1,5 +1,6 @@
-  <!-- Navbar Light -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+{% load i18n %}
+<!-- Navbar Light -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
       <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip" title="Restaurant Kitchen Service" data-placement="bottom">
         Home page
@@ -45,16 +46,20 @@
             </div>
           </li>
 
+          <script src="script.js"></script>
+
           {% if request.user.is_authenticated %}
-            <li class="nav-item ms-lg-auto">
-              <a class="nav-link nav-link-icon me-2" 
-                href="{% url 'logout' %}">
-                <i class="fa fa-sign-out me-1"></i>
-                <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign OUT">Logout</p>
-              </a>
-            </li>          
+          <li class="nav-item ms-lg-auto">
+              <form id="logout-form-navbar" method="post" action="{% url 'logout' %}?next={{ request.path }}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-black"  style="margin: 0 !important;">
+                      <i class="fa fa-sign-out ne-1"></i>
+                      <span class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% translate 'Sign OUT' %}">{% translate "Logout" %}</span>
+                  </button>
+              </form>
+          </li>
           {% endif %}
-        
+
           <li class="nav-item my-auto ms-3 ms-lg-0">
             <a href="https://github.com/Illya-Maznitskiy/restaurant-kitchen-service" target="_blank" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0">Project on GitHub</a>
           </li>
