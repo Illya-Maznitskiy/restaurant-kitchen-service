@@ -17,6 +17,9 @@ class Cook(AbstractUser):
             "restaurant_kitchen:cook-detail", kwargs={"pk": self.pk}
         )
 
+    class Meta:
+        ordering = ["username"]
+
     def __str__(self):
         return self.username
 
@@ -26,6 +29,9 @@ class DishType(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["name"]
 
 
 class Dish(models.Model):
@@ -44,6 +50,9 @@ class Dish(models.Model):
     )
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook)
+
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self):
         return self.name

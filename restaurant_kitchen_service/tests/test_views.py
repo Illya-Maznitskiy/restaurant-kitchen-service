@@ -110,7 +110,7 @@ class PrivateDishTests(TestCase):
         )
         self.assertTemplateUsed(
             response, "restaurant_kitchen/dish_list.html"
-                                )
+        )
 
 
 class DishSearchTests(TestCase):
@@ -174,7 +174,7 @@ class PrivateCookTests(TestCase):
         )
         self.assertTemplateUsed(
             response, "restaurant_kitchen/cook_list.html"
-                                )
+        )
 
 
 class CookSearchTests(TestCase):
