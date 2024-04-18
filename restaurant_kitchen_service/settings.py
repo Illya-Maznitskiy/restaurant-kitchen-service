@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'restaurant_kitchen',
     'crispy_forms',
-    "crispy_bootstrap4",
+    'crispy_bootstrap4',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -132,7 +132,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-ASSETS_ROOT = "/static/assets"
+ASSETS_ROOT = '/static/assets'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -144,5 +144,5 @@ LOGIN_REDIRECT_URL = '/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / 'static',
 ]
