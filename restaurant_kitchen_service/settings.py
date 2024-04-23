@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import os
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,10 +19,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '[::1]']
 
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'hizn#%36@(d+c8q=(_s%-78$@1gkp(8l(+$)vp2uw1k0^*aktp')
+
+SECURE_HSTS_SECONDS = 3136000
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_SSL_REDIRECT = False  # If True site will not run correct
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_PRELOAD = True
 
 # Application definition
 
