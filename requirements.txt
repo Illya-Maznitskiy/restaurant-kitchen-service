@@ -16,6 +16,7 @@ django-crispy-forms==2.1
 fabio==2023.10.0
 Flask==3.0.3
 fonttools==4.50.0
+gunicorn==22.0.0
 h5py==3.10.0
 hdf5plugin==4.4.0
 itsdangerous==2.1.2
