@@ -5,6 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from restaurant_kitchen.models import Cook, DishType, Dish
 
 
+common_attrs = {"style": "background-color: white; width: 700px"}
+
+
 class DishForm(forms.ModelForm):
     class Meta:
         model = Dish
@@ -48,8 +51,19 @@ class DishUpdateForm(forms.ModelForm):
     )
 
 
-class CookCreationForm(forms.ModelForm):
-    class Meta:
+class CookCreationForm(UserCreationForm):
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs=common_attrs),
+        help_text=UserCreationForm.base_fields['password1'].help_text
+    )
+    password2 = forms.CharField(
+        label="Confirm Password",
+        widget=forms.PasswordInput(attrs=common_attrs),
+        help_text=UserCreationForm.base_fields['password2'].help_text
+    )
+
+    class Meta(UserCreationForm.Meta):
         model = Cook
         fields = UserCreationForm.Meta.fields + (
             "first_name",
@@ -57,6 +71,14 @@ class CookCreationForm(forms.ModelForm):
             "email",
             "years_of_experience",
         )
+
+        widgets = {
+            "username": forms.TextInput(attrs=common_attrs),
+            "first_name": forms.TextInput(attrs=common_attrs),
+            "last_name": forms.TextInput(attrs=common_attrs),
+            "email": forms.EmailInput(attrs=common_attrs),
+            "years_of_experience": forms.TextInput(attrs=common_attrs),
+        }
 
 
 class CookUpdateForm(forms.ModelForm):
@@ -68,6 +90,14 @@ class CookUpdateForm(forms.ModelForm):
             "email",
             "years_of_experience",
         )
+
+        widgets = {
+            "username": forms.TextInput(attrs=common_attrs),
+            "first_name": forms.TextInput(attrs=common_attrs),
+            "last_name": forms.TextInput(attrs=common_attrs),
+            "email": forms.EmailInput(attrs=common_attrs),
+            "years_of_experience": forms.TextInput(attrs=common_attrs),
+        }
 
     def clean_years_of_experience(self):
         years_of_experience = self.cleaned_data.get("years_of_experience")

@@ -9,7 +9,10 @@ class Cook(AbstractUser):
         null=True,
         blank=True,
         default=0,
-        validators=[MaxValueValidator(99)]
+        validators=[
+            MaxValueValidator(99),
+            MinValueValidator(0),
+        ]
     )
 
     def get_absolute_url(self):
