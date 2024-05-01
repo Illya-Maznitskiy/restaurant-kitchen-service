@@ -141,11 +141,19 @@ class DishTypeCreationForm(forms.ModelForm):
         model = DishType
         fields = "__all__"
 
+        widgets = {
+            "name": forms.TextInput(attrs=common_attrs),
+        }
+
 
 class DishTypeUpdateForm(forms.ModelForm):
     class Meta:
         model = DishType
         fields = "__all__"
+
+        widgets = {
+            "name": forms.TextInput(attrs=common_attrs),
+        }
 
 
 class DishTypeSearchForm(forms.Form):
