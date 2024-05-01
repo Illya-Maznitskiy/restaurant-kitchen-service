@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 style="margin-bottom: 50px;">Delete the Dish: {{ dish.name }}?</h1>
-  <form action="" method="post">
-    {% csrf_token %}
+  <div style="height: 100px;"></div>
 
-    <input type="submit" value="Yes" class="btn btn-danger" style="margin-right: 5px;">
-    <a href="{% url 'restaurant_kitchen:dish-list' %}" class="btn btn-secondary">Cancel</a>
-  </form>
+  <div style="text-align: center;">
+    <h1 style="margin-bottom: 50px;">Delete the Dish: {{ dish.name }}?</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+
+      <input type="submit" value="Yes" class="btn btn-danger" style="margin-right: 5px;">
+      <a href="{% url 'restaurant_kitchen:dish-list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+
+  <div style="height: 100px;"></div>
+  <div style="height: 200px;"></div>
 {% endblock %}

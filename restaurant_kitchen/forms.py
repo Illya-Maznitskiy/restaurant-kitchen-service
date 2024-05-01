@@ -8,16 +8,23 @@ from restaurant_kitchen.models import Cook, DishType, Dish
 common_attrs = {"style": "background-color: white; width: 700px"}
 
 
-class DishForm(forms.ModelForm):
-    class Meta:
-        model = Dish
-        fields = "__all__"
-
-
 class DishCreationForm(forms.ModelForm):
+    dish_type = forms.ModelChoiceField(
+        queryset=DishType.objects.all(),
+        empty_label="",
+        widget=forms.Select(attrs=common_attrs)
+    )
+
     class Meta:
         model = Dish
         fields = "__all__"
+
+        widgets = {
+            "name": forms.TextInput(attrs=common_attrs),
+            "description": forms.Textarea(attrs={'rows': 4, **common_attrs}),
+            "price": forms.NumberInput(attrs=common_attrs),
+            "cooks": forms.CheckboxSelectMultiple(attrs=common_attrs),
+        }
 
     cooks = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
@@ -43,6 +50,14 @@ class DishUpdateForm(forms.ModelForm):
     class Meta:
         model = Dish
         fields = "__all__"
+
+        widgets = {
+            "name": forms.TextInput(attrs=common_attrs),
+            "description": forms.Textarea(attrs={'rows': 4, **common_attrs}),
+            "price": forms.NumberInput(attrs=common_attrs),
+            "dish_type": forms.Select(attrs=common_attrs),
+            "cooks": forms.CheckboxSelectMultiple(attrs=common_attrs),
+        }
 
     cooks = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
